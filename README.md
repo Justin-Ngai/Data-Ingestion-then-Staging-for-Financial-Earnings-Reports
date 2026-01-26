@@ -41,11 +41,6 @@ Apache Iceberg tables are stored in S3 and support incremental upserts and analy
 
 The repository is organized into four main folders based on pipeline responsibilities.
 
-/raw_processing
-/environment_setup
-/staging_processing
-/orchestration
-
 1. raw_processing
 
 Contains AWS Lambda functions for data ingestion.
