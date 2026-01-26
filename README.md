@@ -1,6 +1,14 @@
-**Architecture**
+**PROJECT OVERVIEW**
 
-The pipeline follows a control-flow-first design, starting from scheduling and orchestration, then moving through ingestion and staging into analytical storage.
+This project implements an AWS-based pipeline for ingesting, staging, and structuring financial text data from Alpha Vantage and Financial Modeling Prep.
+
+The system automates the collection of earnings transcripts and news articles and loads them into Apache Iceberg tables for analytical use. It is designed to support scheduled execution, structured data processing, and reliable analytical querying.
+
+---
+
+**SYSTEM ARCHITECTURE**
+
+The pipeline is organized into scheduling, orchestration, ingestion, staging, and analytical storage layers.
 
 **Scheduling (EventBridge)**
 
@@ -17,9 +25,9 @@ Step Functions workflows coordinate all pipeline activities.
 
 - An input parameter provides a list of stock tickers  
 - Workflows iterate over tickers and reporting periods  
-- Each iteration controls ingestion, staging, and merging  
+- Each iteration manages ingestion, staging, and merging  
 
-This layer manages execution order and failure handling.
+This layer controls execution order and workflow coordination.
 
 **Ingestion – Bronze Layer**
 
@@ -27,13 +35,15 @@ The Bronze layer handles raw data ingestion.
 
 AWS Lambda functions fetch earnings transcripts and news articles from external APIs and store the results as JSON files in S3.
 
-**Staging – Silver Layer**
+**Staging and Analytical Storage – Silver Layer**
 
 The Silver layer handles transformation, merging, and analytical storage.
 
 Athena external tables are created over raw JSON files. Staged data is transformed and upserted into Apache Iceberg tables stored in S3. These Iceberg tables serve as the analytical storage layer and support incremental updates and querying.
 
-**Folder Structure and Repository Contents**
+---
+
+**REPOSITORY STRUCTURE AND COMPONENTS**
 
 The repository is organized into four main folders based on pipeline responsibilities.
 
