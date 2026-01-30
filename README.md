@@ -9,6 +9,6 @@ Step function - Call below services
 Lambda function - Get transcript
 
 Athena statements
-- Create Iceberg table
+- Create Iceberg table (one-time)
 - Create external table
-- MERGE (upsert) external table into Iceberg table
+- Upsert into Iceberg table
